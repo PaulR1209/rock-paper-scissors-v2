@@ -1,13 +1,13 @@
+/* =====================
+   Base & Reset
+===================== */
 * {
-    padding: 0;
     margin: 0;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+    padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-/* General styles */
 body {
     min-height: 100vh;
     display: flex;
@@ -15,87 +15,61 @@ body {
     background-color: whitesmoke;
 }
 
-/* header */
-header {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
+/* =====================
+     Header
+  ===================== */
 #heading {
-    font-weight: 900;
-    font-size: 1.5rem;
     color: saddlebrown;
+    font-weight: 900;
+    font-size: 2rem;
+    text-align: center;
 }
 
-/* main content */
-
-
-.game-content {
-    margin-top: 1rem;
+@media (min-width: 768px) {
+    #heading {
+        font-size: 3rem;
+    }
 }
 
-/* Modal box for instructions */
-
-#my-modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    width: 85%;
-    height: auto;
-    overflow: auto;
-    background-color: rgb(177, 89, 25);
-    color: #ffffff;
-    border: 2px solid black;
-}
-
-#modal-content {
-    padding: 10px;
-}
-
-#modal-content>p {
-    margin-top: 10px;
-}
-
-#close {
-    float: right;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-/* Buttons */
-
-.button-div {
-    margin: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
+/* =====================
+     Buttons
+  ===================== */
 .button,
 .btn {
     background-color: saddlebrown;
-    color: #ffffff;
-    border: 3px solid black;
-    border-radius: 5px;
-    padding: 2px;
-    width: 13rem;
-    height: auto;
-    font-size: 1.3rem;
-    margin: 0.1rem;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 160px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease-in-out;
 }
 
 .button:hover,
 .btn:hover {
     background-color: rgb(177, 89, 25);
-    transform: scale(1.1);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Results */
+.button:active,
+.btn:active {
+    transform: scale(0.98);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* =====================
+     Game Results (Hands + Scores)
+  ===================== */
 .game-results {
     display: flex;
-    justify-content: space-around;
-    margin-top: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
 .result-image {
@@ -103,120 +77,139 @@ header {
     height: auto;
 }
 
-/* Score */
-.score-area {
-    display: flex;
-    justify-content: space-around;
-    font-size: 0.75rem;
-    margin-top: 1rem;
+#my-input-img {
+    transform: scaleX(-1) rotate(-15deg);
+    transition: transform 0.3s ease;
+  }
+  
+  #my-input-img:hover {
+    transform: scaleX(-1) rotate(-15deg) scale(1.05);
+  }
+  
+  #opp-input-img {
+    transform: rotate(-15deg);
+    transition: transform 0.3s ease;
+  }
+  
+  #opp-input-img:hover {
+    transform: rotate(-15deg) scale(1.05);
+  }
+  
+.vs-text {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: saddlebrown;
+    margin: 0;
+    transform: scale(1.1);
+  }
+  
+  @media (min-width: 768px) {
+    .vs-text {
+      font-size: 2rem;
+    }
+  } 
+
+@media (min-width: 425px) {
+    .result-image {
+        width: 135px;
+    }
 }
 
+@media (min-width: 582px) {
+    .result-image {
+        width: 225px;
+    }
+}
+
+@media (min-width: 768px) {
+    .result-image {
+        width: 235px;
+    }
+}
+
+.scores {
+    font-size: 1.1rem;
+    color: saddlebrown;
+    font-weight: 600;
+}
+
+.scores span {
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 0.2rem 0.9rem;
+    color: saddlebrown;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* =====================
+     Feedback Message
+  ===================== */
 #text-feedback {
     display: flex;
     justify-content: center;
-    margin-top: 4rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
 
 #text-feedback.win {
     color: green;
+    animation: pop 0.3s ease-in-out;
 }
 
 #text-feedback.lose {
     color: red;
+    animation: shake 0.3s ease-in-out;
 }
 
-/* footer */
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@media (min-width: 768px) {
+    #text-feedback {
+        font-size: 2rem;
+    }
+}
+
+/* =====================
+     Footer
+  ===================== */
 footer {
     display: flex;
     justify-content: center;
     margin-top: auto;
     padding: 1rem;
     color: saddlebrown;
-    font-size: 0.6rem;
-}
-
-/* medium mobile screen */
-@media screen and (min-width:375px) {
-    #heading {
-        font-size: 1.75rem;
-    }
-
-    .button {
-        width: 14rem;
-        font-size: 1.4rem;
-    }
-
-    .result-image {
-        width: 135px;
-    }
-
-    .score-area {
-        font-size: 1rem;
-    }
-
-    footer {
-        font-size: 0.75rem;
-    }
-}
-
-/* large mobile screen */
-@media screen and (min-width:425px) {
-    #heading {
-        font-size: 2rem;
-    }
-
-    .button {
-        width: 15rem;
-        font-size: 1.5rem;
-    }
-
-    .result-image {
-        width: 150px;
-    }
-
-    footer {
-        font-size: 0.75rem;
-    }
-}
-
-@media screen and (min-width:582px) {
-    .button {
-        width: 9rem;
-    }
-
-    .result-image {
-        width: 225px;
-    }
-
-    .score-area {
-        font-size: 1.5rem;
-    }
-}
-
-/* tablet screen */
-@media screen and (min-width:768px) {
-    #heading {
-        font-size: 3rem;
-    }
-
-    .game-content {
-        margin-top: 8rem;
-    }
-
-    .button {
-        width: 10rem;
-    }
-
-    .result-image {
-        width: 235px;
-    }
-
-    .score-area {
-        font-size: 2rem;
-    }
-
-    #text-feedback {
-        font-size: 2rem;
-    }
+    font-size: 0.75rem;
+    text-align: center;
 }

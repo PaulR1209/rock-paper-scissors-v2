@@ -15,6 +15,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <title>Rock Paper Scissors</title>
@@ -22,84 +24,89 @@
 
 <body>
     <!-- Heading -->
-    <header class="my-4">
+    <header class="my-4 text-center">
         <h1 id="heading">Rock Paper Scissors</h1>
     </header>
 
     <!-- Game Section -->
     <main class="container game-content">
 
-        <!-- Top Buttons -->
+        <!-- Game Results First -->
+        <div class="row justify-content-center game-results text-center">
+            <div class="col-6 col-md-3 mb-3" id="my-result">
+                <img class="result-image" id="my-input-img" src="assets/images/paper.png" alt="My Result" />
+                <p class="scores mt-2">My score: <span id="my-score">0</span></p>
+            </div>
+        
+            <!-- VS TEXT GOES HERE -->
+            <div class="col-12 col-md-1 d-flex align-items-center justify-content-center mb-3">
+                <p class="vs-text">VS</p>
+            </div>
+        
+            <div class="col-6 col-md-3 mb-3" id="opponent-result">
+                <img class="result-image" id="opp-input-img" src="assets/images/paper.png" alt="Opponent Result" />
+                <p class="scores mt-2">Opponent score: <span id="opponent-score">0</span></p>
+            </div>
+        </div>
+        
+        <!-- RPS Buttons (Primary Action) -->
         <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-8 d-flex justify-content-center gap-3 flex-wrap">
+                <button data-choice="rock" class="button" id="rock" type="button">Rock</button>
+                <button data-choice="paper" class="button" id="paper" type="button">Paper</button>
+                <button data-choice="scissors" class="button" id="scissors" type="button">Scissors</button>
+            </div>
+        </div>
+
+        <!-- Feedback Message -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 text-center">
+                <p id="text-feedback"></p>
+            </div>
+        </div>
+
+        <!-- Secondary Buttons (Instructions + Reset) -->
+        <div class="row justify-content-center gap-2 flex-wrap mb-5">
             <div class="col-auto">
-                <button class="btn" id="instructions" type="button">Instructions</button>
+                <button class="btn btn-warning" id="instructions" type="button" data-bs-toggle="modal"
+                    data-bs-target="#instructionsModal">
+                    Instructions
+                </button>
             </div>
             <div class="col-auto">
                 <button class="btn" id="resetScore" type="button">Reset</button>
             </div>
         </div>
 
-        <!-- Modal -->
-        <div id="my-modal">
-            <div id="modal-content">
-                <span id="close">&times;</span>
-                <h2>How To Play</h2>
-                <p>To start the game, you need to choose either Rock, Paper or Scissors by clicking on the relevant
-                    button below.</p>
-                <p>Rock beats Scissors. Scissors beats Paper. Paper beats Rock.</p>
-                <p>To win the game, it is first to 5 points.</p>
-                <p>Good luck, and have fun playing!</p>
-            </div>
-        </div>
-
-        <!-- RPS Buttons -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-auto">
-                <button data-choice="rock" class="button" id="rock" type="button">Rock</button>
-            </div>
-            <div class="col-auto">
-                <button data-choice="paper" class="button" id="paper" type="button">Paper</button>
-            </div>
-            <div class="col-auto">
-                <button data-choice="scissors" class="button" id="scissors" type="button">Scissors</button>
-            </div>
-        </div>
-
-        <!-- Game Results -->
-        <div class="row justify-content-center game-results">
-            <div class="col-6 col-md-3" id="my-result">
-                <img class="result-image" id="my-input-img" src="assets/images/paper.png" alt="My Result" />
-            </div>
-            <div class="col-6 col-md-3" id="opponent-result">
-                <img class="result-image" id="opp-input-img" src="assets/images/paper.png" alt="Opponent Result" />
-            </div>
-        </div>
-
-        <!-- Score -->
-        <div class="row justify-content-center score-area">
-            <div class="col-auto">
-                <p class="scores">My score <span id="my-score">0</span></p>
-            </div>
-            <div class="col-auto">
-                <p class="scores">Opponent score <span id="opponent-score">0</span></p>
-            </div>
-        </div>
-
-        <!-- Feedback -->
-        <div class="row justify-content-center mt-5">
-            <div class="col-12">
-                <p id="text-feedback"></p>
+        <!-- Bootstrap Modal -->
+        <div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-warning-subtle text-dark border border-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="instructionsModalLabel">How To Play</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>To start the game, choose Rock, Paper or Scissors by clicking a button.</p>
+                        <p>Rock beats Scissors. Scissors beats Paper. Paper beats Rock.</p>
+                        <p>First to 5 points wins the game.</p>
+                        <p>Good luck and have fun!</p>
+                    </div>
+                </div>
             </div>
         </div>
 
     </main>
 
     <!-- Footer -->
-    <footer>
-        <div>Created by Paul Russell for Project Portfolio 2</div>
+    <footer class="text-center mt-auto py-3 text-muted small">
+        Created by Paul Russell for Project Portfolio 2
     </footer>
 
+    <!-- Scripts -->
     <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
